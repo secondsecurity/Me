@@ -1,4 +1,3 @@
-
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import threading
 import os
@@ -8,8 +7,35 @@ from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, fil
 
 TOKEN = "8138562324:AAH13BWZG-VJnnMmjjPu9U2TP7yZQZJWoh4"
 
+# 👇 اینو خودت پر کن
+OWNER_ID = 1656844563
+
+
+# ---------- notify owner ----------
+async def notify_owner(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if OWNER_ID is None:
+        return
+
+    user = update.effective_user
+
+    name = user.full_name
+    username = user.username if user.username else "نداره"
+    user_id = user.id
+
+    msg = (
+        "🚀 یه نفر بات رو استارت کرد!\n\n"
+        f"👤 اسم: {name}\n"
+        f"🆔 آیدی: {user_id}\n"
+        f"📛 یوزرنیم: @{username}"
+    )
+
+    await context.bot.send_message(chat_id=OWNER_ID, text=msg)
+
+
 # ---------- /start ----------
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await notify_owner(update, context)
+
     await update.message.reply_text(
         "خوش اومدی \n\n"
         "دستورات ربات ایناست:\n"
@@ -23,7 +49,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # ---------- handlers ----------
 async def joke(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("😂میدونی ماهی ها به آبجی شون چی میگن؟        آبزی")
+    await update.message.reply_text("😂میدونی ماهی ها به آبجی شون چی میگن؟...آبزی")
 
 async def quote(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("💭 زندگی ساده‌تر از چیزیه که فکر می‌کنی")
