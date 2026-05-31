@@ -11,7 +11,7 @@ TOKEN = "8138562324:AAH13BWZG-VJnnMmjjPu9U2TP7yZQZJWoh4"
 # ---------- /start ----------
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "خوش اومدی 👋\n\n"
+        "خوش اومدی \n\n"
         "دستورات ربات ایناست:\n"
         "Joke\n"
         "Quote\n"
@@ -23,7 +23,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # ---------- handlers ----------
 async def joke(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("😂 هنوز جوک ندارم ولی بعداً اضافه میشه")
+    await update.message.reply_text("😂میدونی ماهی ها به آبجی شون چی میگن؟        آبزی")
 
 async def quote(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("💭 زندگی ساده‌تر از چیزیه که فکر می‌کنی")
